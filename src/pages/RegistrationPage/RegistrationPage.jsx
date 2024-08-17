@@ -1,10 +1,12 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 import { registerThunk } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 const Register = () => {
+  const isRegistered = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const initialValues = {
     name: "",
@@ -16,6 +18,10 @@ const Register = () => {
     dispatch(registerThunk(values));
     options.resetForm();
   };
+  
+  if (isRegistered) {
+    <Navigate to="/" />;
+  }
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>

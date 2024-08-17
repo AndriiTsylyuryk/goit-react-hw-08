@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading } from "../../redux/contacts/selectContacts";
+import { selectIsLoading } from "../../redux/contacts/selectors";
 
-import { fetchContactThunk } from "../../redux/contactsOps";
-import { selectFilteredContacts } from "../../redux/contacts/contactsSlice";
+import { fetchContactThunk } from "../../redux/contacts/operations";
+import { selectFilteredContacts } from "../../redux/contacts/slice";
 
 const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);

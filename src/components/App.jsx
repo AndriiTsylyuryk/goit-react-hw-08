@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { fetchContactThunk } from "../redux/contactsOps";
+import { fetchContactThunk } from "../redux/contacts/operations";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
