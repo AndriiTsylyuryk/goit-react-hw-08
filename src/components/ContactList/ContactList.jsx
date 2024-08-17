@@ -10,12 +10,6 @@ import { selectFilteredContacts } from "../../redux/contacts/contactsSlice";
 const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);
   const filteredData = useSelector(selectFilteredContacts);
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchContactThunk());
-  // }, [dispatch]);
-
   return (
     <div>
       {isLoading && <h1>Loading...</h1>}
