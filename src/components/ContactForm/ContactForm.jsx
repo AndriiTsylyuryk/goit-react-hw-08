@@ -4,8 +4,8 @@ import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsSlice";
-import { addContactThunk } from "../../redux/contactsOps";
+
+import { addContactThunk } from "../../redux/contacts/operations";
 
 const ContactForm = () => {
   const schema = Yup.object({

@@ -37,7 +37,13 @@ export const logoutThunk = createAsyncThunk("logout", async (_, thunkAPI) => {
 });
 
 export const getMeThunk = createAsyncThunk("getMe", async (_, thunkAPI) => {
+  const savedToken = thunkAPI.getState().auth.token;
+  if (savedToken === null) {
+    return thunkAPI.rejectWithValue("Token missing");
+  }
+  console.log(savedToken);
   try {
+    setToken(savedToken);
     const { data } = await goitApi.get("users/current");
     return data;
   } catch (error) {

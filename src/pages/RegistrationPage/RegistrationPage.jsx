@@ -18,10 +18,11 @@ const Register = () => {
     dispatch(registerThunk(values));
     options.resetForm();
   };
-  
+
   if (isRegistered) {
     <Navigate to="/" />;
   }
+
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>

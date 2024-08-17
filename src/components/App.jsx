@@ -9,29 +9,34 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/RegistrationPage/RegistrationPage";
 import Contacts from "../pages/Contacts/Contacts";
 import NotFound from "../pages/NotFound/NotFound";
+import { getMeThunk } from "../redux/auth/operations";
+import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchContactThunk());
+    dispatch(getMeThunk());
   }, [dispatch]);
 
   return (
     <div className={styles.wrapper}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />}></Route>
-          <Route path="contacts" element={<Contacts />}></Route>
+          <Route index element={<Home />} />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />
+              </PrivateRoute>
+            }
+          />
         </Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList /> */}
+      
     </div>
   );
 };

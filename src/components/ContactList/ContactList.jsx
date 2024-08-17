@@ -8,8 +8,14 @@ import { fetchContactThunk } from "../../redux/contacts/operations";
 import { selectFilteredContacts } from "../../redux/contacts/slice";
 
 const ContactList = () => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const filteredData = useSelector(selectFilteredContacts);
+
+  useEffect(() => {
+    dispatch(fetchContactThunk());
+  }, [dispatch]);
+  
   return (
     <div>
       {isLoading && <h1>Loading...</h1>}
