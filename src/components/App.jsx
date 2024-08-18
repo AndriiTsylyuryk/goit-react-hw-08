@@ -9,8 +9,8 @@ import Register from "../pages/RegistrationPage/RegistrationPage";
 import Contacts from "../pages/Contacts/Contacts";
 import NotFound from "../pages/NotFound/NotFound";
 import { getMeThunk } from "../redux/auth/operations";
-import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
-import { RestrictedRoute } from "../RestrictedRoute/RestrictedRoute";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute/RestrictedRoute";
 import { selectIsRefreshing } from "../redux/auth/selectors";
 
 const App = () => {
