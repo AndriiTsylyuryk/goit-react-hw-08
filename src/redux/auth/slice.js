@@ -39,6 +39,13 @@ const slice = createSlice({
         state.isLoggedIn = true;
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+        state.isRefreshing = false;
+      })
+      .addCase(getMeThunk.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(getMeThunk.rejected, (state) => {
+        state.isRefreshing = false;
       });
   },
 });

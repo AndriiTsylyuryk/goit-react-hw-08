@@ -7,6 +7,7 @@ import {
 } from "./operations";
 import { selectContacts } from "./selectors";
 import { selectFilter } from "../filters/selectFilter";
+import { logoutThunk } from "../auth/operations";
 
 const initialState = {
   contacts: {
@@ -34,6 +35,8 @@ const slice = createSlice({
       .addCase(addContactThunk.fulfilled, (state, action) => {
         state.contacts.items.push(action.payload);
         state.isLoading = false;
+      }).addCase(logoutThunk.fulfilled, (state, action) => {
+        return initialState;
       })
       .addMatcher(
         isAnyOf(

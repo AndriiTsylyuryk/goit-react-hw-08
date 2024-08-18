@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header/Header";
+import AppBar from "../AppBar/AppBar";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <div>
-      <Header />
+      <AppBar />
       <Outlet />
     </div>
   );

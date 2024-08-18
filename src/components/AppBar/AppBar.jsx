@@ -3,34 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { logoutThunk } from "../../redux/auth/operations";
+import styles from "./AppBar.module.css"; 
 
-const Header = () => {
+const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
   return (
-    <div>
-      <h2>{user.name}</h2>
-      <ul>
+    <div className={styles.container}>
+      <h2 className={styles.userInfo}>{isLoggedIn ? `Hello, ${user.name}` : "Welcome!"}</h2>
+      <ul className={styles.nav}>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink className={styles.navLink} to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/contacts">Contacts</NavLink>
+          <NavLink className={styles.navLink} to="/contacts">Contacts</NavLink>
         </li>
         {!isLoggedIn && (
           <>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink className={styles.navLink} to="/login">Login</NavLink>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
+              <NavLink className={styles.navLink} to="/register">Register</NavLink>
             </li>
           </>
         )}
         {isLoggedIn && (
           <li>
             <button
+              className={styles.button}
               onClick={() => {
                 dispatch(logoutThunk());
               }}
@@ -44,4 +47,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AppBar;

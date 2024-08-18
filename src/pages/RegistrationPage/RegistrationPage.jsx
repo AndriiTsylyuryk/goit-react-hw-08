@@ -20,7 +20,7 @@ const Register = () => {
   };
 
   if (isRegistered) {
-    <Navigate to="/" />;
+    <Navigate to="/" />; 
   }
 
   return (
