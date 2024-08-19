@@ -4,14 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
+
 import Register from "../pages/RegistrationPage/RegistrationPage";
-import Contacts from "../pages/Contacts/Contacts";
+
 import NotFound from "../pages/NotFound/NotFound";
 import { getMeThunk } from "../redux/auth/operations";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute/RestrictedRoute";
 import { selectIsRefreshing } from "../redux/auth/selectors";
+
+import ContactsPage from "../pages/ContactsPage/ContactsPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,7 +33,7 @@ const App = () => {
             path="contacts"
             element={
               <PrivateRoute>
-                <Contacts />
+                <ContactsPage />
               </PrivateRoute>
             }
           />
@@ -38,7 +42,7 @@ const App = () => {
           path="/login"
           element={
             <RestrictedRoute>
-              <Login />
+              <LoginPage />
             </RestrictedRoute>
           }
         />

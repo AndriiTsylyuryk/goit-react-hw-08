@@ -1,15 +1,13 @@
-import React from "react";
 import { Field, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from './LoginForm.module.css'
+import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import styles from "./Login.module.css"; // Імпорт стилів
 
-const Login = () => {
-  const isLoggenIn = useSelector(selectIsLoggedIn);
+const LoginForm = () => {
   const dispatch = useDispatch();
-  
+
   const initialValues = {
     email: "",
     password: "",
@@ -20,10 +18,6 @@ const Login = () => {
     console.log(values);
     options.resetForm();
   };
-
-  if (isLoggenIn) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <div className={styles.container}>
@@ -52,4 +46,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

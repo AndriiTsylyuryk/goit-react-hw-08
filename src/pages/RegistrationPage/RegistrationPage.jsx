@@ -4,45 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { registerThunk } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
-const Register = () => {
+const RegistrationPage = () => {
   const isRegistered = useSelector(selectIsLoggedIn);
-  const dispatch = useDispatch();
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-  };
-  const handleSubmit = (values, options) => {
-    console.log(values);
-    dispatch(registerThunk(values));
-    options.resetForm();
-  };
 
   if (isRegistered) {
-    <Navigate to="/" />; 
+    <Navigate to="/" />;
   }
 
-  return (
-    <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <Field name="name" placeholder="Enter name"></Field>
-          <Field name="email" placeholder="Enter email"></Field>
-          <Field
-            name="password"
-            type="password"
-            placeholder="Enter password"
-          ></Field>
-          <button type="submit">Register</button>
-
-          <Link to="/login">
-            <p>I already have an account</p>{" "}
-          </Link>
-        </Form>
-      </Formik>
-    </div>
-  );
+  return <RegistrationForm />;
 };
 
-export default Register;
+export default RegistrationPage;
