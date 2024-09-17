@@ -10,8 +10,6 @@ import UserMenu from "../UserMenu/UserMenu";
 
 const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
 
   return (
     <div className={styles.container}>
