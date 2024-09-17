@@ -9,6 +9,7 @@ import { selectContacts } from "./selectors";
 import { selectFilter } from "../filters/selectFilter";
 import { logoutThunk } from "../auth/operations";
 
+
 const initialState = {
   contacts: {
     items: [],

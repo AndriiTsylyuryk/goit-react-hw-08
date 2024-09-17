@@ -1,9 +1,10 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from './LoginForm.module.css'
-import { useDispatch } from "react-redux";
+import styles from "./LoginForm.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations";
+import { selectError } from "../../redux/auth/selectors";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,8 @@ const LoginForm = () => {
     console.log(values);
     options.resetForm();
   };
-
+  const error = useSelector(selectError);
+  
   return (
     <div className={styles.container}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -37,6 +39,7 @@ const LoginForm = () => {
           <button className={styles.button} type="submit">
             Login
           </button>
+          {error && <p>{"Wrong username or password:("}</p>}
           <Link className={styles.link} to="/register">
             <p>Register</p>
           </Link>

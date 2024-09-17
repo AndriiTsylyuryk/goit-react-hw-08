@@ -15,6 +15,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isError: false,
 };
 
 const slice = createSlice({
@@ -26,11 +27,16 @@ const slice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isError = false;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isError = false;
+      })
+      .addCase(loginThunk.rejected, (state, action) => {
+        state.isError = true;
       })
       .addCase(logoutThunk.fulfilled, (state, action) => {
         return initialState;
@@ -40,12 +46,15 @@ const slice = createSlice({
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.isRefreshing = false;
+        state.isError = false;
       })
       .addCase(getMeThunk.pending, (state) => {
         state.isRefreshing = true;
+        state.isError = false;
       })
       .addCase(getMeThunk.rejected, (state) => {
         state.isRefreshing = false;
+        state.isError = false;
       });
   },
 });
