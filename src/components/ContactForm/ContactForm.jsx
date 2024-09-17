@@ -37,7 +37,7 @@ const ContactForm = () => {
     options.resetForm();
   };
   return (
-    <div>
+    <div className={s.container}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -45,16 +45,18 @@ const ContactForm = () => {
       >
         <Form className={s.wrapper}>
           <label className={s.label}>
-            <span>Name</span>
-            <Field name="name" />
-            <ErrorMessage name="name" component="span" className={s.span} />
+            <span className={s.labelText}>Name</span>
+            <Field name="name" className={s.field} />
+            <ErrorMessage name="name" component="span" className={s.error} />
           </label>
-          <label>
-            <span>Number</span>
-            <Field name="number" />
-            <ErrorMessage name="number" component="span" className={s.span} />
+          <label className={s.label}>
+            <span className={s.labelText}>Number</span>
+            <Field name="number" className={s.field} />
+            <ErrorMessage name="number" component="span" className={s.error} />
           </label>
-          <button type="submit">Add Contact</button>
+          <button type="submit" className={s.button}>
+            Add Contact
+          </button>
         </Form>
       </Formik>
     </div>
