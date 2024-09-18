@@ -11,8 +11,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const schema = Yup.object({
     email: Yup.string()
-      .email("Must be a valid email!")
-      .required("required field"),
+      .email("must be a valid email!")
+      .required("this field is required"),
     password: Yup.string()
       .password()
       .minLowercase(0)
@@ -43,20 +43,32 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
       >
         <Form className={styles.form}>
-          <ErrorMessage name="email" component="span" />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={styles.error}
+          />
           <Field
             className={styles.field}
             name="email"
             placeholder="Enter email"
           />
-          <ErrorMessage name="password" component="span" />
+          <ErrorMessage
+            name="password"
+            component="span"
+            className={styles.error}
+          />
           <Field
             className={styles.field}
             name="password"
             type="password"
             placeholder="Enter password"
           />
-          {error && <p>{"Wrong username or password:("}</p>}
+          {error && (
+            <p className={styles.globalError}>
+              {"Wrong username or password:("}
+            </p>
+          )}
           <button className={styles.button} type="submit">
             Login
           </button>

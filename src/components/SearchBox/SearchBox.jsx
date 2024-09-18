@@ -2,12 +2,13 @@ import { Formik, Field, Form } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { changeFilter } from "../../redux/filters/filtersSlice";
-import styles from './SearchBox.module.css'
+import styles from './SearchBox.module.css';
+
 const SearchBox = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.container}>
       <Formik>
         <Form>
           <label>
@@ -17,6 +18,7 @@ const SearchBox = () => {
               onChange={(e) => {
                 dispatch(changeFilter(e.target.value));
               }}
+              className={styles.searchField}
             />
           </label>
         </Form>

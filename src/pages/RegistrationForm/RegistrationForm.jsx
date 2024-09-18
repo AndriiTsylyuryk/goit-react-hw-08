@@ -7,19 +7,21 @@ import styles from "./RegistrationForm.module.css";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 
-import YupPassword from 'yup-password'
-YupPassword(Yup) 
+import YupPassword from "yup-password";
+YupPassword(Yup);
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
   const schema = Yup.object({
     name: Yup.string()
-      .required("This field is required")
-      .min(3, "add more")
+      .required("this field is required")
+      .min(3, "add more chars")
       .max(50, "too much chars"),
 
-    email: Yup.string().email("Must be a valid email!").required("Required"),
+    email: Yup.string()
+      .email("must be a valid email!")
+      .required("this field is required"),
     password: Yup.string().password().required(),
   });
 
@@ -43,19 +45,27 @@ const RegistrationForm = () => {
         validationSchema={schema}
       >
         <Form className={styles.form}>
-          <ErrorMessage name="name" component="span" />
+          <ErrorMessage name="name" component="span" className={styles.error} />
           <Field
             className={styles.field}
             name="name"
             placeholder="Enter name"
           />
-          <ErrorMessage name="email" component="span" />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={styles.error}
+          />
           <Field
             className={styles.field}
             name="email"
             placeholder="Enter email"
           />
-          <ErrorMessage name="password" component="span" />
+          <ErrorMessage
+            name="password"
+            component="span"
+            className={styles.error}
+          />
           <Field
             className={styles.field}
             name="password"
